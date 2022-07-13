@@ -1,6 +1,6 @@
 # oak-api
 
-Prototype web API backed by oaklib[https://github.com/INCATools/ontology-access-kit].
+Prototype web API backed by [oaklib](https://github.com/INCATools/ontology-access-kit).
 
 ## Setup
 
