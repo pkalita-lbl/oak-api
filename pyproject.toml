@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "oak-api"
+version = "0.1.0"
+description = ""
+authors = ["Patrick Kalita <pkalita@lbl.gov>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastapi = "^0.78.0"
+uvicorn = {extras = ["standard"], version = "^0.18.2"}
+oaklib = "^0.1.31"
+pydantic = "^1.9.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+black = "^22.6.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 99
