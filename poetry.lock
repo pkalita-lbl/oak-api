@@ -176,6 +176,24 @@ python-versions = ">=3.6.0"
 unicode_backport = ["unicodedata2"]
 
 [[package]]
+name = "class-resolver"
+version = "0.3.10"
+description = "Lookup and instantiate classes with style."
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.extras]
+click = ["click"]
+docdata = ["docdata"]
+docs = ["sphinx", "sphinx-rtd-theme", "sphinx-autodoc-typehints", "sphinx-automodapi"]
+numpy = ["numpy"]
+optuna = ["optuna"]
+ray = ["ray"]
+tests = ["coverage", "pytest"]
+torch = ["torch"]
+
+[[package]]
 name = "click"
 version = "8.1.3"
 description = "Composable command line interface toolkit"
@@ -553,7 +571,7 @@ viz = ["pygraphviz"]
 
 [[package]]
 name = "oaklib"
-version = "0.1.31"
+version = "0.1.33"
 description = "Ontology Access Kit: Python library for common ontology operations over a variety of backends"
 category = "main"
 optional = false
@@ -561,6 +579,7 @@ python-versions = ">=3.9,<4.0"
 
 [package.dependencies]
 appdirs = ">=1.4.4,<2.0.0"
+class-resolver = ">=0.3.10,<0.4.0"
 funowl = ">=0.1.12,<0.2.0"
 kgcl-rdflib = ">=0.2.0,<0.3.0"
 kgcl-schema = ">=0.2.0,<0.3.0"
@@ -568,7 +587,7 @@ lark = ">=1.1.2,<2.0.0"
 linkml-runtime = ">=1.2.15,<2.0.0"
 networkx = ">=2.7.1,<3.0.0"
 nxontology = ">=0.4.0,<0.5.0"
-pronto = ">=2.4.6,<3.0.0"
+pronto = ">=2.5.0,<3.0.0"
 pystow = ">=0.4.4,<0.5.0"
 ratelimit = ">=2.2.1,<3.0.0"
 semsql = ">=0.1.6,<0.2.0"
@@ -1204,7 +1223,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "156c7501c211c18f3555246b936fff6e911ec6f47baf24afc50b2e375482c8e1"
+content-hash = "f89a3922374afbda9b62a37d1bcfd183086bb4ce2de83facce6c409d785d53e5"
 
 [metadata.files]
 aiohttp = [
@@ -1326,6 +1345,7 @@ charset-normalizer = [
     {file = "charset-normalizer-2.1.0.tar.gz", hash = "sha256:575e708016ff3a5e3681541cb9d79312c416835686d054a23accb873b254f413"},
     {file = "charset_normalizer-2.1.0-py3-none-any.whl", hash = "sha256:5189b6f22b01957427f35b6a08d9a0bc45b46d3788ef5a92e978433c7a35f8a5"},
 ]
+class-resolver = []
 click = [
     {file = "click-8.1.3-py3-none-any.whl", hash = "sha256:bb4d8133cb15a609f44e8213d9b391b0809795062913b383c62be0ee95b1db48"},
     {file = "click-8.1.3.tar.gz", hash = "sha256:7682dc8afb30297001674575ea00d1814d808d6a36af415a82bd481d37ba7b8e"},
