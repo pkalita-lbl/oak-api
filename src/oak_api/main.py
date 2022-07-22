@@ -1,12 +1,13 @@
 import itertools
 from typing import List
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from oaklib.datamodels.search import SearchConfiguration
-from src.oak_api.models import OntologyClass
-from src.oak_api.utils import get_classes_from_curies
+from .depends import predicates
+from .models import OntologyClass
+from .utils import get_classes_from_curies
 
-from src.oak_api.ontology import implementation
+from .ontology import implementation
 
 app = FastAPI()
 
@@ -36,8 +37,8 @@ def get_class(curie: str):
     response_model=List[OntologyClass],
     summary="Get class ancestors",
 )
-def get_ancestors(curie: str):
-    ancestors = implementation.ancestors(curie)
+def get_ancestors(curie: str, predicates=Depends(predicates)):
+    ancestors = implementation.ancestors(curie, predicates)
     return get_classes_from_curies(ancestors)
 
 
@@ -46,6 +47,6 @@ def get_ancestors(curie: str):
     response_model=List[OntologyClass],
     summary="Get class descendants",
 )
-def get_descendants(curie: str):
-    descendants = implementation.descendants(curie)
+def get_descendants(curie: str, predicates=Depends(predicates)):
+    descendants = implementation.descendants(curie, predicates)
     return get_classes_from_curies(descendants)
