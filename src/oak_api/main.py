@@ -1,13 +1,14 @@
 import itertools
 from typing import List
+
 from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from oaklib.datamodels.search import SearchConfiguration
+
 from .depends import predicates
 from .models import OntologyClass
-from .utils import get_classes_from_curies
-
 from .ontology import implementation
+from .utils import get_classes_from_curies
 
 app = FastAPI()
 

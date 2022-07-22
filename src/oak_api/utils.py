@@ -1,7 +1,7 @@
 from typing import Iterable
-from src.oak_api.models import OntologyClass
 
-from src.oak_api.ontology import implementation
+from .models import OntologyClass
+from .ontology import implementation
 
 
 def get_classes_from_curies(curies: Iterable[str]) -> Iterable[OntologyClass]:

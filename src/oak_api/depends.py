@@ -1,4 +1,5 @@
 from typing import Union
+
 from fastapi import Query
 from oaklib.datamodels.vocabulary import (
     DEVELOPS_FROM,

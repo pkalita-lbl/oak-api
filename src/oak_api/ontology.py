@@ -1,6 +1,6 @@
-from oaklib.selector import get_implementation_from_shorthand
 from oaklib.implementations import SqlImplementation
+from oaklib.selector import get_implementation_from_shorthand
 
-from src.oak_api.settings import settings
+from .settings import settings
 
 implementation: SqlImplementation = get_implementation_from_shorthand(settings["implementation"])  # type: ignore
