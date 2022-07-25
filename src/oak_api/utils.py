@@ -2,20 +2,7 @@ from typing import Iterable, TypeVar, Union
 
 from fastapi import Request
 
-from .models import OntologyClass, Page, PaginationInfo
-from .ontology import implementation
-
-
-def get_classes_from_curies(curies: Iterable[str]) -> Iterable[OntologyClass]:
-    labeled = implementation.labels(curies)
-    return (
-        OntologyClass(
-            id=curie,
-            label=label,
-            definition=implementation.definition(curie),
-        )
-        for curie, label in labeled
-    )
+from .models import Page, PaginationInfo
 
 
 def _replace_page_param(request: Request, new_page: Union[int, None]) -> Union[str, None]:
