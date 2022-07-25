@@ -1,11 +1,10 @@
 from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from oaklib.datamodels.search import SearchConfiguration
 
+from . import ontology
 from .depends import pagination, predicates
 from .models import OntologyClass, Page
-from .ontology import implementation
-from .utils import get_classes_from_curies, paginate
+from .utils import paginate
 
 app = FastAPI()
 
@@ -20,14 +19,13 @@ app.add_middleware(
 
 @app.get("/search", response_model=Page[OntologyClass], summary="Search for classes")
 def do_search(q: str, pagination=Depends(pagination)):
-    config = SearchConfiguration(is_partial=True)
-    curies = implementation.basic_search(q, config)
-    return paginate(get_classes_from_curies(curies), **pagination)
+    results = ontology.search(q)
+    return paginate(results, **pagination)
 
 
 @app.get("/class/{curie}", response_model=OntologyClass, summary="Get class by CURIE")
 def get_class(curie: str):
-    return next(iter(get_classes_from_curies([curie])))
+    return next(iter(ontology.get_classes_from_curies([curie])))
 
 
 @app.get(
@@ -36,8 +34,8 @@ def get_class(curie: str):
     summary="Get class ancestors",
 )
 def get_ancestors(curie: str, predicates=Depends(predicates), pagination=Depends(pagination)):
-    ancestors = implementation.ancestors(curie, predicates)
-    return paginate(get_classes_from_curies(ancestors), **pagination)
+    ancestors = ontology.ancestors(curie, predicates)
+    return paginate(ancestors, **pagination)
 
 
 @app.get(
@@ -46,5 +44,5 @@ def get_ancestors(curie: str, predicates=Depends(predicates), pagination=Depends
     summary="Get class descendants",
 )
 def get_descendants(curie: str, predicates=Depends(predicates), pagination=Depends(pagination)):
-    descendants = implementation.descendants(curie, predicates)
-    return paginate(get_classes_from_curies(descendants), **pagination)
+    descendants = ontology.descendants(curie, predicates)
+    return paginate(descendants, **pagination)
