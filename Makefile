@@ -7,3 +7,4 @@ dev:
 
 format:
 	$(RUN) black {src,tests}
+	$(RUN) isort {src,tests}
