@@ -1,11 +1,17 @@
+from typing import List
 from fastapi import APIRouter, Depends
 
 from .. import ontology
-from ..depends import pagination, predicates
+from ..depends import curies_list, pagination, predicates
 from ..models import OntologyClass, Page
 from ..utils import paginate
 
 router = APIRouter(prefix="/classes", tags=["classes"])
+
+
+@router.get("/", response_model=List[OntologyClass], summary="Get multiple classes")
+def get_classes(curies: List[str] = Depends(curies_list)):
+    return ontology.get_classes_from_curies(curies)
 
 
 @router.get("/{curie}", response_model=OntologyClass, summary="Get class by CURIE")

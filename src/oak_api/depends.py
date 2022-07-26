@@ -1,6 +1,6 @@
-from typing import Union
+from typing import List, Union
 
-from fastapi import Query, Request
+from fastapi import HTTPException, Query, Request
 from oaklib.datamodels.vocabulary import (
     DEVELOPS_FROM,
     EQUIVALENT_CLASS,
@@ -16,6 +16,13 @@ PREDICATE_MAP = {
     "rdf_type": RDF_TYPE,
     "equivalent_class": EQUIVALENT_CLASS,
 }
+
+
+async def curies_list(curies: str) -> List[str]:
+    parsed = curies.split(',')
+    if len(parsed) > 50:
+        raise HTTPException(status_code=422, detail="Maximum of 50 CURIEs allowed")
+    return parsed
 
 
 async def predicates(predicate: Union[list[str], None] = Query(default=None)):
