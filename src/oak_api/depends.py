@@ -19,7 +19,7 @@ PREDICATE_MAP = {
 
 
 async def curies_list(curies: str) -> List[str]:
-    parsed = curies.split(',')
+    parsed = curies.split(",")
     if len(parsed) > 50:
         raise HTTPException(status_code=422, detail="Maximum of 50 CURIEs allowed")
     return parsed
