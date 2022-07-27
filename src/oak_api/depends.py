@@ -1,6 +1,6 @@
-from typing import Any, Dict, List, Union
+from typing import List, Union
 
-from fastapi import HTTPException, Query, Request
+from fastapi import HTTPException, Query
 from oaklib.datamodels.vocabulary import (
     DEVELOPS_FROM,
     EQUIVALENT_CLASS,

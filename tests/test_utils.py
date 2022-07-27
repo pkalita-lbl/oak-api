@@ -19,7 +19,7 @@ def test_paginate_first_page_of_many(mock_request):
     items = range(100)
     page = paginate(items, 1, 5, mock_request)
     assert page.data == list(range(5))
-    assert page.pagination.previous == None
+    assert page.pagination.previous is None
     assert page.pagination.next == "2"
 
 
@@ -27,8 +27,8 @@ def test_paginate_first_page_of_one(mock_request):
     items = range(18)
     page = paginate(items, 1, 20, mock_request)
     assert page.data == list(items)
-    assert page.pagination.previous == None
-    assert page.pagination.next == None
+    assert page.pagination.previous is None
+    assert page.pagination.next is None
 
 
 def test_paginate_last_page_of_many(mock_request):
@@ -36,7 +36,7 @@ def test_paginate_last_page_of_many(mock_request):
     page = paginate(items, 4, 20, mock_request)
     assert page.data == list(range(60, 75))
     assert page.pagination.previous == "3"
-    assert page.pagination.next == None
+    assert page.pagination.next is None
 
 
 def test_paginate_middle_page(mock_request):
