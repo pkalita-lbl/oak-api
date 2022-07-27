@@ -19,6 +19,8 @@ def mock_oak_implementation() -> OakImpl:
     mock.basic_search.return_value = ["a", "b", "c"]
     mock.labels.return_value = [("a", "a label"), ("b", "b label"), ("c", "c label")]
     mock.definition.return_value = "mock definition"
+    mock.ancestors.return_value = ["ANCESTOR:01", "ANCESTOR:02", "ANCESTOR:03"]
+    mock.descendants.return_value = ["DESCENDANT:01", "DESCENDANT:02", "DESCENDANT:03"]
     return mock
 
 
