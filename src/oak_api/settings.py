@@ -1,10 +1,25 @@
-from pathlib import Path
+from functools import lru_cache
 
-import yaml
+from oaklib.selector import get_implementation_from_shorthand
+from pydantic import BaseSettings
 
-settings = {}
-with open(Path(__file__).parent / "../../settings.yaml", "r") as stream:
-    try:
-        settings = yaml.safe_load(stream)
-    except yaml.YAMLError as exc:
-        print(exc)
+from .oak_service import OakImpl
+
+
+class Settings(BaseSettings):
+    oak_input: str
+
+    class Config:
+        env_file = ".env"
+        env_file_encoding = "utf-8"
+
+
+@lru_cache
+def get_settings() -> Settings:
+    return Settings()  # type: ignore
+
+
+@lru_cache
+def get_oak_implementation() -> OakImpl:
+    settings = get_settings()
+    return get_implementation_from_shorthand(settings.oak_input)  # type: ignore
