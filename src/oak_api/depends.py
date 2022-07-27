@@ -1,4 +1,4 @@
-from typing import List, Union
+from typing import Any, Dict, List, Union
 
 from fastapi import HTTPException, Query, Request
 from oaklib.datamodels.vocabulary import (
@@ -25,11 +25,9 @@ async def curies_list(curies: str) -> List[str]:
     return parsed
 
 
-async def predicates(predicate: Union[list[str], None] = Query(default=None)):
+async def predicates(
+    predicate: Union[List[str], None] = Query(default=None)
+) -> Union[List[str], None]:
     if predicate is None:
         return predicate
     return [PREDICATE_MAP[p] if p in PREDICATE_MAP else p for p in predicate]
-
-
-async def pagination(request: Request, limit: int = 20, page: int = Query(default=1, ge=1)):
-    return {"limit": limit, "page": page, "request": request}

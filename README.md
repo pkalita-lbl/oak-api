@@ -11,10 +11,10 @@ poetry install
 Add a [semantic-sql](https://github.com/INCATools/semantic-sql) SQLite database to the root directory.
 
 ```shell
-cp settings.yaml.example settings.yaml
+cp .env.example .env
 ```
 
-Update `settings.yaml` with the name of your local database.
+Update `.env` with the name of your local database.
 
 ## Run
 

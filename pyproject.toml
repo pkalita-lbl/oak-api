@@ -9,7 +9,7 @@ python = "^3.9"
 fastapi = "^0.78.0"
 uvicorn = {extras = ["standard"], version = "^0.18.2"}
 oaklib = "0.1.33"
-pydantic = "^1.9.1"
+pydantic = {extras = ["dotenv"], version = "^1.9.1"}
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
